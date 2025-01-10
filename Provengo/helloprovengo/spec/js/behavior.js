@@ -1,19 +1,15 @@
 /* @provengo summon selenium */
 
-/**
- * This story opens a new browser window, goes to google.com, and searches for "Pizza".
- */
-bthread('Search', function () {
-  let s = new SeleniumSession('search').start(URL)
-  composeQuery(s, { text: 'Pizza' })
-  startSearch(s)
+/* Use-case teacher delete quiz from course */
+    
+bthread("delete quiz",function(){
+    let session = new SeleniumSession("teacher").start(URL);
+    sync({request: Event("login",{session:session,user: USERS.teachr})});
+    let course = choose(COURSES);
+    sync({request: Event("goto course", {session:session,course:course})});
+    let quiz = choose(course.quizes);
+    sync({request: Event("delete quiz", {session:session,quiz:quiz})});
+
 })
 
-/**
- * This story opens a new browser window, goes to google.com, and searches for "Pasta" using the "I Feel Lucky" feature.
- */
-bthread('Feeling lucky', function () {
-  let s = new SeleniumSession('lucky').start(URL)
-  composeQuery(s, { text: 'Pasta' })
-  feelLucky(s)
-})
+

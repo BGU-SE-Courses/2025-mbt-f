@@ -2,12 +2,18 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://address-of-the-project.com).
 
 $$*TODO* Add some general description about the software$$
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+we followed the instraction here:
+https://docs.moodle.org/405/en/Complete_install_packages_for_Windows?_gl=1*65l900*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUwOTQyOC4wLjAuMA..
+
+we download it from here:
+https://download.moodle.org/windows/?_gl=1*1x9n0gr*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUxMDI0My4wLjAuMA..
+
+we chose 4.5.1+ version
 
 ## What we tested
 $$*TODO* Add a description of the module and the user stories that you chose to test.
