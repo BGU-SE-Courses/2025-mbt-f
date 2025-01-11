@@ -1,3 +1,8 @@
+
+// @provengo summon selenium 
+
+
+
 /*
  *  This is a good place to put common test data, project-wide constants, etc.
  */
@@ -12,7 +17,6 @@ const xpaths = {
     
 }
 
-const seleniumSession = new SeleniumSession("user") 
 
 const USERS ={
     teacher:{
@@ -25,41 +29,14 @@ const USERS ={
     }
 }
 
-const COURSES=[
+const COURSES = [
   {
-      title: 'OS',
-      code: 'ISA',
-      quizes:[
-        {
-          title: 'Quiz 1',
-          code: 'ISA01Q1',
-          questions:[
-            {
-              title: 'Q1',
-              code: 'ISA01Q1Q1'
-            },
-            {
-              title: 'Q2',
-              code: 'ISA01Q1Q2'
-            }
-          ]
-        },
-        {
-          title: 'Quiz 2',
-          code: 'ISA01Q2',
-          questions:[
-            {
-              title: 'Q1',
-              code: 'ISA01Q2Q1'
-            },
-            {
-              title: 'Q2',
-              code: 'ISA01Q2Q2'
-            }
-          ]
-        }
-      ]
+    title: 'OS',
+    code: 'ISA',
+    quizes: [
+      { title: 'Quiz 1', code: 'ISA01Q1' },
+      { title: 'Quiz 2', code: 'ISA01Q2' }
+    ]
   }
-
-
 ]
+
