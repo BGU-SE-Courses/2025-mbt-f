@@ -1,7 +1,6 @@
 
 // @provengo summon selenium 
 
-
 bthread("login",function(){
     let event = sync({waitFor: any("login")});
     let session_log = event.data.session;
@@ -10,9 +9,35 @@ bthread("login",function(){
     session_log.writeText(xpaths.username_text_box, user.username);
     session_log.writeText(xpaths.password_text_box, user.password);
     session_log.click(xpaths.login_button);
-    sync({request: Event("login done",{session: session_log})});
+    sync({request: Event("login done",{session: session_log.name})});
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // bthread("login", function () {
 //     let event = sync({ waitFor: any("login") });
