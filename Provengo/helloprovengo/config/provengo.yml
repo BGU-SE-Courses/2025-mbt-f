@@ -1,10 +1,12 @@
 version: 2
-
 analyze.output.format: pdf
-
 selenium:
   driver: "chrome"
   driverOptions:
     - "--start-maximized"
-  executablePath: "2025-MBT-F\\node_modules\\chromedriver\\bin\\chromedriver"
-  logPath: "C:\\Users\\User\\Desktop\\selenium.log"
+    - "--disable-headless" 
+    - "--no-sandbox"
+    - "--disable-dev-shm-usage"
+  visible: true
+  executablePath: ".\\node_modules\\chromedriver\\bin\\chromedriver"
+  logPath: ".\\selenium.log"

@@ -1,28 +1,16 @@
 
-// /* @provengo summon selenium */
+ /* @provengo summon selenium */
 
 
-// /* Use-case teacher delete quiz from course */
-    
-// let options = new chrome.Options();
-// options.headless = false;  // Disable headless mode
-// const { Builder } = require('selenium-webdriver');
-// const chrome = require('selenium-webdriver/chrome');
-
-// const { Builder } = require('selenium-webdriver');
-// const chrome = require('selenium-webdriver/chrome');
-
-// let driver = new Builder()
-//     .forBrowser('chrome')
-//     .setChromeOptions(new chrome.Options())
-//     .build();
-
-// // Use `driver` for navigation
-// driver.get('https://example.com');
+const options = {
+    headless: false,
+    browserName: 'chrome',
+    args: ['--start-maximized']
+};
 
     
 bthread("delete quiz from course",function(){
-    let session = new SeleniumSession("teacher");
+    let session = new SeleniumSession("teacher",options);
     session.start(URL);
     sync({request: Event("login",{login: true, session: session, user: USERS.teacher})});
     let course = choose(COURSES);
