@@ -1,0 +1,71 @@
+package hellocucumber;
+
+import java.util.List;
+
+public class SeleniumManager {
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private MoodleLogin login;
+    private MoodleDeleteQuiz delete_quiz;
+    
+    public SeleniumManager() {
+        this.data = new ArrayList<>();
+        System.setProperty("webdriver.chrome.driver", "2025-MBT-F\\node_modules\\chromedriver\\bin\\chromedriver");
+        this.driver = new ChromeDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.login = new MoodleLogin(this.driver, this.wait);
+        this.delete_quiz = new MoodleDeleteQuiz(this.driver, this.wait);
+    }
+    public static void main(String[] args) {
+        SeleniumManager manager = new SeleniumManager();
+        Teacher teacher = new Teacher();
+        manager.login_func(teacher);
+        manager.delete_quiz_func(course,quiz);
+        manager.closeBrowser();
+
+    }
+
+    public void login_func(Teacher teacher){
+        try {
+            this.login.navigateToLoginPage();
+            this.login.LoginUser(teacher);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public void delete_quiz_func(int course, int quiz){
+        try {
+            this.delete_quiz.navigateToCourses();
+            this.delete_quiz.chooseCourse(course);
+            this.delete_quiz.navigateToQuizes();
+            this.delete_quiz.chooseQuizAndDelete(quiz);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+        }
+    }
+
+    public void closeBrowser() {
+        // Close the browser
+        this.driver.quit();
+    }
+
+    class Teacher{
+        
+        private String username;
+        private String password;
+        public Teacher(){
+            this.username = "yaki_naftali";
+            this.password = "YakiNaftali1";
+        }
+        public String get_username(){
+            return this.username;
+        }
+        public String get_password(){
+            return this.password;
+        }
+    }
+
+}

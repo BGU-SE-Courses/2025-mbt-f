@@ -6,11 +6,11 @@
 /*
  *  This is a good place to put common test data, project-wide constants, etc.
  */
-const URL = 'http://localhost';
+const URL = "http://localhost:4444";
 
 const xpaths = {
 
-    login_from_main_page : '//div[@id="usernavigation"]//a',
+    login_from_main_page : '/html[1]/body[1]/div[2]/nav[1]/div[1]/div[2]/div[1]/div[1]/span[1]/a[1]',
     username_text_box : '//input[@id="username"]',
     password_text_box : '//input[@id="password"]',
     login_button : '//button[@id="loginbtn"]',

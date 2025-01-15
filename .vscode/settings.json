@@ -1,5 +1,10 @@
 {
     "provengoStudio.graphvizPath": "C:\\Program Files\\Graphviz\\bin",
     "provengoStudio.programPath": "C:\\Program Files\\Provengo\\Provengo Cli\\Provengo.uber.exe",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.referencedLibraries": [
+          "lib/**/*.jar"
+    ]
+    
 
 }

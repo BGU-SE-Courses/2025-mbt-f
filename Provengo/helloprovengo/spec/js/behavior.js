@@ -2,7 +2,24 @@
 // /* @provengo summon selenium */
 
 
-/* Use-case teacher delete quiz from course */
+// /* Use-case teacher delete quiz from course */
+    
+// let options = new chrome.Options();
+// options.headless = false;  // Disable headless mode
+// const { Builder } = require('selenium-webdriver');
+// const chrome = require('selenium-webdriver/chrome');
+
+// const { Builder } = require('selenium-webdriver');
+// const chrome = require('selenium-webdriver/chrome');
+
+// let driver = new Builder()
+//     .forBrowser('chrome')
+//     .setChromeOptions(new chrome.Options())
+//     .build();
+
+// // Use `driver` for navigation
+// driver.get('https://example.com');
+
     
 bthread("delete quiz from course",function(){
     let session = new SeleniumSession("teacher");
