@@ -6,7 +6,7 @@
 /*
  *  This is a good place to put common test data, project-wide constants, etc.
  */
-const URL = "http://localhost";
+// const URL = "http://localhost:4444/wd/hub";  // Add this for Selenium Grid
 
 const xpaths = {
 

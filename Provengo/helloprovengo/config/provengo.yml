@@ -1,12 +1,23 @@
 version: 2
+
 analyze.output.format: pdf
+
 selenium:
+
   driver: "chrome"
+
   driverOptions:
+
     - "--start-maximized"
-    - "--disable-headless" 
+
+    - "--disable-headless"
+
     - "--no-sandbox"
+
     - "--disable-dev-shm-usage"
+
+    - "--remote-allow-origins=*"
+
   visible: true
-  executablePath: ".\\node_modules\\chromedriver\\bin\\chromedriver"
-  logPath: ".\\selenium.log"
+
+  remoteUrl: "http://localhost:4444/wd/hub"  # Add this line
