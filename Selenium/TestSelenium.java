@@ -19,11 +19,11 @@ public class TestSelenium {
             options.addArguments("--disable-headless");
             
             driver = new ChromeDriver(options);
-            wait = new WebDriverWait(driver, Duration.ofSeconds(10));  // Initialize wait
+            wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
         
         try {
             driver.get("http://localhost");
-            Thread.sleep(5000); // Wait 5 seconds to see if it works
+            Thread.sleep(5000); 
             login_func("noapatch", "Noa319123048#");
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,7 +37,7 @@ public class TestSelenium {
             navigateToLoginPage();
             LoginUser(username, password);
             nevigate_To_My_Course();
-            Thread.sleep(5000); // Wait to see the login result
+            Thread.sleep(5000); 
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -49,7 +49,7 @@ public class TestSelenium {
         WebElement navigatetoLogin = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[2]/div[1]/div[1]/span[1]/a[1]")));
         navigatetoLogin.click();
-        Thread.sleep(1000);  // Small wait after click
+        Thread.sleep(1000); 
     }
 
     public static void LoginUser(String username, String password) throws InterruptedException {
@@ -67,39 +67,51 @@ public class TestSelenium {
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
             By.id("loginbtn")));
         loginButton.click();
-
-        // Scroll down
-        //((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        
-        Thread.sleep(1000);  // Small wait after login
+        Thread.sleep(1000); 
     }
 
     public static void nevigate_To_My_Course() throws InterruptedException{
 
-        // Locate the toggle switch using its unique ID
-        WebElement editModeButton = wait.until(ExpectedConditions.elementToBeClickable(
-            By.id("67893397ee12167893397e62d84-editingswitch")));
-        
-        // Click the toggle switch
-        editModeButton.click();
-        
-        // Optional: Wait briefly to observe the action or verify state change
-        wait.until(ExpectedConditions.attributeToBe(editModeButton, "checked", "true"));
-        
         WebElement my_courses_button = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]")));
         my_courses_button.click();
         Thread.sleep(1000);
-
+        
         WebElement OS_button = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/div[3]/div[1]/div[2]/div[1]/section[1]/div[1]/aside[1]/section[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/span[3]/span[2]")));
         OS_button.click();
         Thread.sleep(1000);
 
-        // WebElement edit_mode_button = wait.until(ExpectedConditions.elementToBeClickable(
-        //     By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[2]/form[1]/div[1]/div[1]/input[1]")));
-        // edit_mode_button.click();
-        // Thread.sleep(1000);
+        WebElement edit_node_toggle = driver.findElement(By.className("custom-control"));
+        edit_node_toggle.click();
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement scroll_down = wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")));
+        js.executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", scroll_down);
+
+        WebElement three_dots_button = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")));
+        three_dots_button.click();
+        Thread.sleep(1000);
+
+        WebElement delete_the_quiz_button = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/a[8]")));
+        delete_the_quiz_button.click();
+        Thread.sleep(1000);
+
+        // WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
+        //     By.xpath("/html[1]/body[1]/div[7]/div[2]/div[1]/div[1]/div[3]/button[2]")));
+        // delete_quiz.click();
+        // Thread.sleep(5000);
+
+        WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
+            By.xpath("//button[contains(@class, 'btn') and contains(text(), 'Delete')]")));
+        
+        // Use JavaScript to click the button
+        JavascriptExecutor js2 = (JavascriptExecutor) driver;
+        js2.executeScript("arguments[0].click();", delete_quiz);
+        Thread.sleep(10000);
 
 
 
