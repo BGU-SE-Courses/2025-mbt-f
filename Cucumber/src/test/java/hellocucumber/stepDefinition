@@ -1,90 +1,112 @@
+
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
-import org.openqa.selenium.By;
 
-public class TestSelenium {
+public class stepDefinition {
+    private static WebDriver driver;
+    private static WebDriverWait wait;
 
-        private static WebDriver driver;
-        private static WebDriverWait wait;  // Add this line
-    
-        public static void main(String[] args) {
-            ChromeOptions options = new ChromeOptions();
-            options.addArguments("--start-maximized");
-            options.addArguments("--disable-headless");
-            
-            driver = new ChromeDriver(options);
-            wait = new WebDriverWait(driver, Duration.ofSeconds(30)); 
+    @Before
+    public void setup() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        options.addArguments("--disable-headless");
         
-        try {
-            driver.get("http://localhost");
-            Thread.sleep(5000); 
-            login_func("noapatch", "Noa319123048#");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        driver = new ChromeDriver(options);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+
+    @After
+    public void tearDown() {
+        if (driver != null) {
             driver.quit();
         }
     }
 
-    public static void login_func(String username, String password) {
-        try {
-            navigateToLoginPage();
-            LoginUser(username, password);
-            nevigate_To_My_Course();
-            Thread.sleep(5000); 
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    public static WebDriver getDriver() {
+        return driver;
     }
 
+    public static WebDriverWait getWait() {
+        return wait;
+    }
+}
 
-    public static void navigateToLoginPage() throws InterruptedException {
-        // Wait for and click the login link
+
+
+import io.cucumber.java.en.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import static stepdefinitions.Hooks.getDriver;
+import static stepdefinitions.Hooks.getWait;
+
+public class LoginSteps {
+    private WebDriver driver = getDriver();
+    private WebDriverWait wait = getWait();
+
+    @Given("I am on the homepage")
+    public void i_am_on_the_homepage() throws InterruptedException {
+        driver.get("http://localhost");
+        Thread.sleep(5000);
+    }
+
+    @When("I navigate to login page")
+    public void i_navigate_to_login_page() throws InterruptedException {
         WebElement navigatetoLogin = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[2]/div[1]/div[1]/span[1]/a[1]")));
         navigatetoLogin.click();
-        Thread.sleep(1000); 
+        Thread.sleep(1000);
     }
 
-    public static void LoginUser(String username, String password) throws InterruptedException {
-        // Wait for and fill in username
+    @When("I enter username {string} and password {string}")
+    public void i_enter_credentials(String username, String password) {
         WebElement usernameElement = wait.until(ExpectedConditions.elementToBeClickable(
             By.id("username")));
         usernameElement.sendKeys(username);
 
-        // Wait for and fill in password
         WebElement passwordElement = wait.until(ExpectedConditions.elementToBeClickable(
             By.id("password")));
         passwordElement.sendKeys(password);
+    }
 
-        // Click login button
+    @When("I click the login button")
+    public void i_click_login_button() throws InterruptedException {
         WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(
             By.id("loginbtn")));
         loginButton.click();
-        Thread.sleep(1000); 
+        Thread.sleep(1000);
     }
 
-    public static void nevigate_To_My_Course() throws InterruptedException{
-
+    @When("I navigate to my courses")
+    public void i_navigate_to_my_courses() throws InterruptedException {
         WebElement my_courses_button = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]")));
         my_courses_button.click();
         Thread.sleep(1000);
-        
+    }
+
+    @When("I click on the OS course")
+    public void i_click_on_os_course() throws InterruptedException {
         WebElement OS_button = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/div[3]/div[1]/div[2]/div[1]/section[1]/div[1]/aside[1]/section[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/span[3]/span[2]")));
         OS_button.click();
         Thread.sleep(1000);
+    }
 
+    @When("I enable edit mode")
+    public void i_enable_edit_mode() {
         WebElement edit_node_toggle = driver.findElement(By.className("custom-control"));
         edit_node_toggle.click();
+    }
 
+    @When("I click the three dots menu")
+    public void i_click_three_dots_menu() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement scroll_down = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")));
@@ -94,26 +116,28 @@ public class TestSelenium {
             By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/a[1]/i[1]")));
         three_dots_button.click();
         Thread.sleep(1000);
+    }
 
+    @When("I click delete quiz")
+    public void i_click_delete_quiz() throws InterruptedException {
         WebElement delete_the_quiz_button = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[4]/div[5]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[2]/div[2]/div[4]/div[1]/div[1]/div[1]/div[1]/div[1]/a[8]")));
         delete_the_quiz_button.click();
         Thread.sleep(1000);
+    }
 
-        // WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
-        //     By.xpath("/html[1]/body[1]/div[7]/div[2]/div[1]/div[1]/div[3]/button[2]")));
-        // delete_quiz.click();
-        // Thread.sleep(5000);
-
+    @Then("I confirm deletion")
+    public void i_confirm_deletion() throws InterruptedException {
         WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("//button[contains(@class, 'btn') and contains(text(), 'Delete')]")));
         
-        // Use JavaScript to click the button
-        JavascriptExecutor js2 = (JavascriptExecutor) driver;
-        js2.executeScript("arguments[0].click();", delete_quiz);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", delete_quiz);
+    }
+
+    @And("I wait for deletion to complete")
+    public void i_wait_for_deletion() throws InterruptedException {
         Thread.sleep(10000);
-
-
-
     }
 }
+
