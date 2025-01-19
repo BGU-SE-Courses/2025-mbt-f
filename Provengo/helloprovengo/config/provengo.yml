@@ -8,5 +8,5 @@ selenium:
     - "--no-sandbox"
     - "--disable-dev-shm-usage"
   visible: true
-  executablePath: ".\\node_modules\\chromedriver\\bin\\chromedriver"
+  executablePath: ".\\Selenium"
   logPath: ".\\selenium.log"
