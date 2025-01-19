@@ -31,9 +31,9 @@ public class StepDefinitions {
     }
 
     @When("Teacher is logged in with {string} and {string}")
-    public void teacher_is_logged_in_with_and(String username, String password) {
-        this.name = username;
-        this.password = password;
+    public void teacher_is_logged_in_with_and(String string, String string2) {
+        this.name = string;
+        this.password = string2;
         //go the the login page
         WebElement navigatetoLogin = wait.until(ExpectedConditions.elementToBeClickable(
             By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[2]/div[1]/div[1]/span[1]/a[1]")));
@@ -50,43 +50,43 @@ public class StepDefinitions {
         loginButton.click();
     }
 
-    @When("Teacher navigates to course name")
-    public void teacher_navigates_to_course_name() {
-        // Go to my courses
-        WebElement my_courses_button = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]")));
-        my_courses_button.click();
-        Thread.sleep(5000);
-        // Go to the specific course
-        WebElement course_button = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//span[contains(text(), '" + courseName + "')]")));
-        course_button.click();
-        Thread.sleep(5000);
-        // Click on the edit toggle
-        WebElement edit_node_toggle = driver.findElement(By.className("custom-control"));
-        edit_node_toggle.click();
-    }
+    // @When("Teacher navigates to course name")
+    // public void teacher_navigates_to_course_name() {
+    //     // Go to my courses
+    //     WebElement my_courses_button = wait.until(ExpectedConditions.elementToBeClickable(
+    //         By.xpath("/html[1]/body[1]/div[2]/nav[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]")));
+    //     my_courses_button.click();
+    //     Thread.sleep(5000);
+    //     // Go to the specific course
+    //     WebElement course_button = wait.until(ExpectedConditions.elementToBeClickable(
+    //         By.xpath("//span[contains(text(), '" + courseName + "')]")));
+    //     course_button.click();
+    //     Thread.sleep(5000);
+    //     // Click on the edit toggle
+    //     WebElement edit_node_toggle = driver.findElement(By.className("custom-control"));
+    //     edit_node_toggle.click();
+    // }
 
-    @When("Teacher deletes quiz number")
-    public void teacher_deletes_quiz_number() {
-        // Scroll down to the 3 dots button
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement scroll_down = wait.until(ExpectedConditions.presenceOfElementLocated(
-            By.xpath("//div[contains(@class, 'quiz-number-" + quizNumber + "')]")));
-        js.executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", scroll_down);
-        // Click on the 3 dots button
-        WebElement three_dots_button = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//div[contains(@class, 'three-dots-" + quizNumber + "')]")));
-        three_dots_button.click();
-        // Click on the delete quize
-        WebElement delete_the_quiz_button = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//a[contains(text(), 'Delete')]")));
-        delete_the_quiz_button.click();
-        // Click on the red delete button and ensure that the quiz is deletes
-        WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
-            By.xpath("//button[contains(@class, 'btn') and contains(text(), 'Delete')]")));
-        js.executeScript("arguments[0].click();", delete_quiz);
-    }
+    // @When("Teacher deletes quiz number")
+    // public void teacher_deletes_quiz_number() {
+    //     // Scroll down to the 3 dots button
+    //     JavascriptExecutor js = (JavascriptExecutor) driver;
+    //     WebElement scroll_down = wait.until(ExpectedConditions.presenceOfElementLocated(
+    //         By.xpath("//div[contains(@class, 'quiz-number-" + quizNumber + "')]")));
+    //     js.executeScript("arguments[0].scrollIntoView({ behavior: 'smooth', block: 'center' });", scroll_down);
+    //     // Click on the 3 dots button
+    //     WebElement three_dots_button = wait.until(ExpectedConditions.elementToBeClickable(
+    //         By.xpath("//div[contains(@class, 'three-dots-" + quizNumber + "')]")));
+    //     three_dots_button.click();
+    //     // Click on the delete quize
+    //     WebElement delete_the_quiz_button = wait.until(ExpectedConditions.elementToBeClickable(
+    //         By.xpath("//a[contains(text(), 'Delete')]")));
+    //     delete_the_quiz_button.click();
+    //     // Click on the red delete button and ensure that the quiz is deletes
+    //     WebElement delete_quiz = wait.until(ExpectedConditions.elementToBeClickable(
+    //         By.xpath("//button[contains(@class, 'btn') and contains(text(), 'Delete')]")));
+    //     js.executeScript("arguments[0].click();", delete_quiz);
+    // }
 
     @Then("the quiz should be successfully deleted")
     public void the_quiz_should_be_successfully_deleted() {
