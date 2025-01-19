@@ -1,4 +1,4 @@
-Feature: A set of scenarios for testing the moodle use cases
+Feature: A set of scenarios for testing the "example" module
 
   Scenario Outline: Teacher deletes a quiz from course
     Given Teacher is on Home Page
@@ -7,6 +7,9 @@ Feature: A set of scenarios for testing the moodle use cases
     And Teacher deletes quiz number "<number>"
     Then the quiz should be successfully deleted
 
+  Examples:
+    | username | password | coruseName | number |
+    | noapatch | Noa319123048# | OS | 1|
 
 
 
