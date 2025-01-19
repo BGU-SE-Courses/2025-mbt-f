@@ -3,13 +3,13 @@ Feature: A set of scenarios for testing the "example" module
   Scenario Outline: Teacher deletes a quiz from course
     Given Teacher is on Home Page
     When Teacher is logged in with "<username>" and "<password>"
-    And Teacher navigates to course name "<coruseName>"
-    And Teacher deletes quiz number "<number>"
+    And Teacher navigates to course name
+    And Teacher deletes quiz number
     Then the quiz should be successfully deleted
 
   Examples:
-    | username | password | coruseName | number |
-    | noapatch | Noa319123048# | OS | 1|
+    | username | password | 
+    | noapatch | Noa319123048# | 
 
 
 
