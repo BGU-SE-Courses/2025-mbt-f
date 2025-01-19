@@ -6,6 +6,7 @@ import hellocucumber.SeleniumManager;
 import hellocucumber.MoodleLogin;
 import hellocucumber.MoodleDeleteQuiz;
 
+import java.util.List;
 
 public class StepDefinitions {
     private static List<SeleniumManager> allSessions;

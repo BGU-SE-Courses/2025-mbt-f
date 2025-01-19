@@ -10,7 +10,7 @@ const options = {
 
     
 bthread("delete quiz from course",function(){
-    let session = new SeleniumSession("teacher",options);
+    let session = new SeleniumSession("teacher","edge");
     session.start(URL);
     sync({request: Event("login",{login: true, session: session, user: USERS.teacher})});
     let course = choose(COURSES);

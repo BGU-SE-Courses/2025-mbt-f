@@ -1,6 +1,5 @@
 package hellocucumber;
 
-import java.util.List;
 
 public class SeleniumManager {
     private WebDriver driver;
@@ -10,7 +9,7 @@ public class SeleniumManager {
     
     public SeleniumManager() {
         this.data = new ArrayList<>();
-        System.setProperty("webdriver.chrome.driver", "2025-MBT-F\\node_modules\\chromedriver\\bin\\chromedriver");
+        System.setProperty("webdriver.chrome.driver", "2025-MBT-F\\Selenium\\chromedriver");
         this.driver = new ChromeDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         this.login = new MoodleLogin(this.driver, this.wait);
