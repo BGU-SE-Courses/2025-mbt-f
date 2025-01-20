@@ -14,7 +14,6 @@
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
             <dependency>
                 <groupId>org.junit</groupId>
@@ -22,12 +21,6 @@
                 <version>5.10.2</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>4.18.1</version>
-                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>io.cucumber</groupId>
@@ -62,6 +55,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.18.1</version>
         </dependency>
 
     </dependencies>

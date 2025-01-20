@@ -5,53 +5,21 @@
 
 const TEST_URL = "http://localhost";
 
-bthread("simple test", function(){
+ bthread("delete quiz from course",function(){
     try {
-        // Create and start session
-        let session = new SeleniumSession("test", "chrome");
-        session.start(TEST_URL);
-        
-        // Wait for page to load using a more specific xpath
-        session.waitForVisibility("//html//body", 10000);
-        
-        // Wait a bit to see if it works
-        bp.sync({ request: bp.Event("SLEEP", 5000) });
-        
-        // Try to find any element on your page with more specific xpath
-        session.waitForVisibility("//html//a", 5000);
-        
+        let session = new SeleniumSession("teacher","chrome");
+        session.start(URL);
+        // Add wait for browser to be ready
+        session.waitForVisibility("body", 10000);  // Wait up to 10 seconds
+        sync({request: Event("login",{login: true, session: session, user: USERS.teacher})});
+        let course = choose(COURSES);
+        sync({request: Event("goto course", {login: true, session:session, course:course})});
+        let quiz = choose(course.quizes);
+        sync({request: Event("delete quiz", {login: true, session:session, quiz:quiz})});
     } catch (error) {
-        console.error("Test failed:", error);
-        // Add this to see more details about the error
-        console.log("Error details:", error.message);
+        console.error("Session start failed:", error);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-//  bthread("delete quiz from course",function(){
-//     try {
-//         let session = new SeleniumSession("teacher","chrome");
-//         session.start(URL);
-//         // Add wait for browser to be ready
-//         session.waitForVisibility("body", 10000);  // Wait up to 10 seconds
-//         sync({request: Event("login",{login: true, session: session, user: USERS.teacher})});
-//         let course = choose(COURSES);
-//         sync({request: Event("goto course", {login: true, session:session, course:course})});
-//         let quiz = choose(course.quizes);
-//         sync({request: Event("delete quiz", {login: true, session:session, quiz:quiz})});
-//     } catch (error) {
-//         console.error("Session start failed:", error);
-//     }
-// });
 
 
 
