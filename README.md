@@ -17,11 +17,11 @@ we chose 4.5.1+ version
 
 ## What we tested
 We tested the quiz module that allows teachers to manage quizzes and students to check their grades. We chose to test the following user stories:
-1. User story: A teacher deletes an existing quiz from an existing course
+1. Use case: A teacher deletes an existing quiz from an existing course
 Preconditions: There is a course with an existing quiz, and the teacher has the necessary permissions to delete quizzes.
 Expected outcome: The quiz is successfully deleted from the course and is no longer available to students.
 
-2. User story: A student tries to check their grade for a quiz
+2. Use case: A student tries to check their grade for a quiz
 Preconditions: There is a course with an existing quiz, and the student has already attempted the quiz. The quiz grades have been calculated and are available for viewing.
 Expected outcome: The student is able to view their grade for the quiz.
 
