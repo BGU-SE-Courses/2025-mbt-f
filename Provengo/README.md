@@ -1,11 +1,6 @@
 # Testing $$Moodle$$ using Provengo
 This directory contains the Provengo project for testing $$Moodle$$.
 
-$$*TODO* 
-1. replace the name of the folder 'Moodle' with the name of your software (use underscore/title case to avoid spaces)
-2. Search and replace for the word 'Moodle' in the entire project and replace it with the new folder name. 
-$$
-
 ## Running the tests
 To run a single random test, run:
 ```shell 
