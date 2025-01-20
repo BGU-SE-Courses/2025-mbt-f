@@ -22,7 +22,7 @@ const xpaths = {
     grades_link: "//a[contains(@data-key,'grades')]",
     quiz_grades: "//div[contains(@class,'quiz-grades')]",
     OS_course: "//span[contains(text(),'OS')]",
-    Quiz_1: "//span[@class='instancename' and text()='Quiz 1 ']",
+    Quiz_1: "//body/div[2]/div[4]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]",
     quiz_grades: "//body/div[2]/div[4]/div[1]/div[2]/div[1]/section[1]/div[2]/ul[1]/li[1]/div[1]/table[1]/tbody[1]/tr[6]/td[1]/b[2]"
 }
 
