@@ -21,8 +21,13 @@ const xpaths = {
     confirm_delete: "//button[contains(@class,'confirm-delete')]",
     grades_link: "//a[contains(@data-key,'grades')]",
     quiz_grades: "//div[contains(@class,'quiz-grades')]",
-    OS_course: "//span[contains(text(),'OS')]",
+    OS_course: "//span[@aria-hidden='true' and normalize-space(text())='OS']",
+    edit_mode_toggle: "//label[contains(text(),'Edit mode')]",
     Quiz_1: "//body/div[2]/div[4]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]",
+    edit_quiz_1: "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[3]/div[2]/div[2]/div[4]/div/div/div/div/a/i",
+    delete_quiz_button: "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[3]/div[2]/div[2]/div[4]/div/div/div/div/div/a[8]/span",
+    confirm_delete: "//button[contains(@class,'btn btn-danger')]",
+
     quiz_grades: "//body/div[2]/div[4]/div[1]/div[2]/div[1]/section[1]/div[2]/ul[1]/li[1]/div[1]/table[1]/tbody[1]/tr[6]/td[1]/b[2]"
 }
 

@@ -1,39 +1,49 @@
 // Use Provengo-specific ways to handle selenium sessions or browsers
 
-// bthread("delete quiz from course", function() {
-//   let session = new SeleniumSession("teacher", "chrome");
-//   session.start(URL);
-//   sync({ request: Event("login", { login: true, session: session, user: USERS.student }) });
-//   let course = choose(COURSES);
-//   sync({ request: Event("goto course", { login: true, session: session, course: course }) });
-//   let quiz = choose(course.quizes);
-//   sync({ request: Event("delete quiz", { login: true, session: session, quiz: quiz }) });
-// });
-
 bthread("student watches quiz grades", function() {
   let session = new SeleniumSession("student", "chrome");
   session.start(URL);
 
-  // login
-  sync({ request: Event("login", { login: true, session: session, user: USERS.student }) });
-  sync({ waitFor: Event("login done")});
+  // Login
+  login(session, USERS.student);
 
   // choose course - do we need?
   let course = choose(COURSES);
 
   // go to course - do we need?
-  sync({ request: Event("goto course", { login: true, session: session, course: course }) });
-  sync({ waitFor: Event("goto course done")});
+  goto_course_from_main_page(session, course);
 
   // choose quiz - do we need?
   let quiz = choose(course.quizes);
 
   // go to quiz
-  sync({ request: Event("goto quiz", { login: true, session: session, quiz: quiz }) });
-  sync({ waitFor: Event("goto quiz done")});
+  goto_quiz_from_course_page(session, quiz);
 
   // assert there is a grade
-  sync({ request: Event("assert grade", { login: true, session: session, quiz: quiz }) });
+  assert_grade_in_quiz(session);
 });
 
 
+bthread("teacher deletes quiz", function() {
+  let session = new SeleniumSession("teacher", "chrome");
+  session.start(URL);
+
+  // Login
+  login(session, USERS.teacher);
+
+  // choose course - do we need?
+  let course = choose(COURSES);
+
+  // go to course - do we need?
+  goto_course_from_main_page(session, course);
+
+  // enable editing mode
+  toggle_edit_mode(session);
+
+  // choose quiz - do we need?
+  let quiz = choose(course.quizes);
+
+  // delete quiz
+  delete_quiz(session, quiz);
+
+});
