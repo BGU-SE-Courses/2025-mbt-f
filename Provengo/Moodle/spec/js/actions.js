@@ -1,5 +1,6 @@
 
 // @provengo summon selenium 
+// @provengo summon ctrl
 
 /**
  * This is a good place to put specific actions that can be performed on the system under test. 
@@ -28,7 +29,7 @@ function goto_course_from_main_page(session, course){
 
   // Press on my courses
   session.click(xpaths.press_on_myCourses);
-
+    
   // Press on the course
   session.click(xpaths.OS_course);  // TODO - use replace
 };
@@ -64,15 +65,28 @@ function delete_quiz(session, quiz){
   session.click(xpaths.delete_quiz_button);
 
   // wait for the popup to appear
-  Ctrl.doSleep(1000)
+  Ctrl.doSleep(500)
 
+  // TODO remove the comment after checking 
   // Confirm delete
-  session.click(xpaths.confirm_delete);
+  //session.click(xpaths.confirm_delete);
 }
+
+/** 
+function assert_no_quiz_in_course_page(session, quiz){
+  // 
+  let quiz_exists = session.find(xpaths.Quiz_1)
+  if(quiz_exists){
+    throw new Error("Quiz exists in the course page")
+  }
+};*/
 
 /**
  * 
- */
+ 
 function assert_grade_in_quiz(session){
-  // TODO - assert that there is a grade
-};
+  let grade_exists = session.find(xpaths.quiz_grade);
+  if(!grade_exists){
+    throw new Error("No grade in the quiz")
+  }
+}; */
