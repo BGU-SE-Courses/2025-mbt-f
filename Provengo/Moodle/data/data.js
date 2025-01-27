@@ -13,7 +13,8 @@ const xpaths = {
     username_text_box : '//input[@id="username"]',
     password_text_box : '//input[@id="password"]',
     login_button : '//button[@id="loginbtn"]',
-    press_on_myCourses: '/html[1]/body[1]/div[2]/nav[1]/div[1]/div[1]/nav[1]/ul[1]/li[3]/a[1]',
+    press_on_myCourses: '/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]',
+
     press_on_course_in_my_coruses: '/html[1]/body[1]/div[2]/div[3]/div[1]/div[2]/div[1]/section[1]/div[1]/aside[1]/section[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/a[1]/span[3]/span[2]',
     press_on_quiz_to_see_grade: '/html[1]/body[1]/div[2]/div[4]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/div[2]/ul[1]/li[1]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]',
     
@@ -23,16 +24,13 @@ const xpaths = {
     quiz_grades: "//div[contains(@class,'quiz-grades')]",
     OS_course: "//span[@aria-hidden='true' and normalize-space(text())='OS']",
     edit_mode_toggle: "//label[contains(text(),'Edit mode')]",
-    Quiz_1: "//body/div[2]/div[4]/div[1]/div[3]/div[1]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/div[1]/div[2]/ul[1]/li[2]/div[1]/div[2]/div[2]/div[1]/div[1]/a[1]",
+    Quiz_1: "//a[contains(text(),'Quiz 1')]",
     edit_quiz_1: "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/a/i",
     delete_quiz_button: "//*[@id='action-menu-3-menu']/a[8]",
     confirm_delete: "//button[contains(@class,'btn btn-danger')]",
 
-    three_lines_for_course: "//*[@id='page-wrapper']/nav/div/button",
-    press_on_myCourses_with_three_lines: "/html/body/div[2]/div[2]/div[2]/div/a[3]",
-
     quiz_grades: "//body/div[2]/div[4]/div[1]/div[2]/div[1]/section[1]/div[2]/ul[1]/li[1]/div[1]/table[1]/tbody[1]/tr[6]/td[1]/b[2]"
-}
+  }
 
 const USERS ={
     teacher:{
@@ -50,8 +48,7 @@ const COURSES = {
     title: 'OS',
     code: 'ISA',
     quizes: [
-      { title: 'Quiz 1', code: 'ISA01Q1' },
-      { title: 'Quiz 2', code: 'ISA01Q2' }
+      { title: 'Quiz 1', code: 'ISA01Q1' }
     ]
   }
 }

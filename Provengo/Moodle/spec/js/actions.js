@@ -4,7 +4,6 @@
 
 /**
  * This is a good place to put specific actions that can be performed on the system under test. 
- * TODO - all actions are hardcoded and should be parametrized - ?
  */
 
 /**
@@ -25,13 +24,19 @@ function login(session, user){
  * @param {session} session - the selenium session.
  * @param {course} course - the course to go to.
  */
-function goto_course_from_main_page(session, course){
+function goto_course_from_main_page(session){
+
+  // Wait for the my courses button to be clickable
+  session.waitForClickability(xpaths.press_on_myCourses, 1000)
 
   // Press on my courses
   session.click(xpaths.press_on_myCourses);
     
+  // Wait for the course to be clickable
+  session.waitForClickability(xpaths.OS_course, 1000)
+
   // Press on the course
-  session.click(xpaths.OS_course);  // TODO - use replace
+  session.click(xpaths.OS_course);  
 };
 
 /**
@@ -39,8 +44,8 @@ function goto_course_from_main_page(session, course){
  * @param {session} session - the selenium session.
  * @param {quiz} quiz - the quiz to go to.
  */
-function goto_quiz_from_course_page(session, quiz){
-  session.click(xpaths.Quiz_1); // TODO - use replace
+function goto_quiz_from_course_page(session){
+  session.click(xpaths.Quiz_1);
 };
 
 /**
@@ -56,9 +61,10 @@ function toggle_edit_mode(session){
  * @param {session} session - the selenium session.
  * @param {quiz} quiz - the quiz to delete.
  */
-function delete_quiz(session, quiz){
+function delete_quiz(session){
 
   // press on edit
+  session.waitForClickability(xpaths.edit_quiz_1, 1000)
   session.click(xpaths.edit_quiz_1);
 
   // press on delete
@@ -69,24 +75,6 @@ function delete_quiz(session, quiz){
 
   // TODO remove the comment after checking 
   // Confirm delete
-  //session.click(xpaths.confirm_delete);
+  session.click(xpaths.confirm_delete);
 }
 
-/** 
-function assert_no_quiz_in_course_page(session, quiz){
-  // 
-  let quiz_exists = session.find(xpaths.Quiz_1)
-  if(quiz_exists){
-    throw new Error("Quiz exists in the course page")
-  }
-};*/
-
-/**
- * 
- 
-function assert_grade_in_quiz(session){
-  let grade_exists = session.find(xpaths.quiz_grade);
-  if(!grade_exists){
-    throw new Error("No grade in the quiz")
-  }
-}; */

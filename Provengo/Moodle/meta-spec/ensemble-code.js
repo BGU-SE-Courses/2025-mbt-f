@@ -1,50 +1,72 @@
 // @provengo summon ctrl
 
+// Domain Specific
+
+// We defined the domain specific goals in this specific order 
+// As we thought that the moodle may not work properly if the student is in 
+// the course page and the teacher deletes the quiz as the student can still press on the quiz button 
+// even if the quiz was deleted
+
 /**
- * List of events "of interest" that we want test suites to cover.
- */
+ * The goals in our test suite is to make sure that the teacher can delete a quiz and the student can check his grade.
+ 
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
-];
-
-const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
-}
+    Ctrl.markEvent("Student Goes to Course"),
+    Ctrl.markEvent("Teacher Deletes Quiz"),
+    Ctrl.markEvent("Student Checks Grade")
+];*/
 
 /**
- * Ranks test suites by how many events from the GOALS array were met.
- * The more goals are met, the higher the score.
- * 
- * It make no difference if a goal was met more then once.
+ * count how many tests in the ensemble have the goals met in order.
  *
  * @param {Event[][]} ensemble The test suite to be ranked.
  * @returns Number of events from GOALS that have been met.
- */
-function rankByMetGoals( ensemble ) {
-    const unreachedGoals = [];
-    for ( let idx=0; idx<GOALS.length; idx++ ) {
-        unreachedGoals.push(GOALS[idx]);
-    }
+ 
+function rankByDomainSpecific(ensemble) {
 
-    for (let testIdx = 0; testIdx < ensemble.length; testIdx++) {
-        let test = ensemble[testIdx];
-        for (let eventIdx = 0; eventIdx < test.length; eventIdx++) {
-            let event = test[eventIdx];
-            for (let ugIdx=unreachedGoals.length-1; ugIdx >=0; ugIdx--) {
-                let unreachedGoal = unreachedGoals[ugIdx];
-                if ( unreachedGoal.contains(event) ) {
-                    unreachedGoals.splice(ugIdx,1);
-                }
+    let sum = 0;
+
+    // for each test
+    for (let index = 0; index < ensemble.length; index++) {
+
+        // get the test
+        let test = ensemble[index];
+
+        // find the goals that were met in the test
+        let goals_met_indicies = [];
+
+        // for each goal
+        for (let goal of GOALS) {
+            let index = test.findIndex(e => e.name == goal.name)
+            if (index != -1) {
+                goals_met_indicies.push(index);
             }
         }
+
+        // if all goals were not met, skip this test
+        if (goals_met_indicies.length != GOALS.length) 
+            continue;
+
+        // make sure the goals were met in order
+        let last_index = -1;
+        let goals_met = true;
+        for (let index of goals_met_indicies) {
+            if (index < last_index) {
+                goals_met = false;
+                break;
+            }
+            last_index = index;
+        }
+
+        if (!goals_met)
+            continue;
+
+        // all events in the goal list were met
+        sum++;
     }
 
-    return GOALS.length-unreachedGoals.length;
-}
+    return sum;
+}*/
 
 /**
  * Ranks potential test suites based on the percentage of goals they cover.
@@ -57,14 +79,80 @@ function rankByMetGoals( ensemble ) {
  *
  * @param {Event[][]} ensemble the test suite/ensemble to be ranked
  * @returns the percentage of goals covered by `ensemble`.
- */
+ * 
  function rankingFunction(ensemble) {
     
     // How many goals did `ensemble` hit?
-    const metGoalsCount = rankByMetGoals(ensemble);
-    // What percentage of the goals did `ensemble` cover?
-    const metGoalsPercent = metGoalsCount/GOALS.length;
+    const metGoalsCount = rankByDomainSpecific(ensemble);
+    // What percentage of the ensemble had the specific order of goals met
+    const metGoalsPercent = metGoalsCount/ensemble.length;
 
     return metGoalsPercent * 100; // convert to human-readable percentage
+} */
+
+
+
+// Two way
+
+// @provengo summon ctrl
+
+const STUDENT_GOALS = [
+    Ctrl.markEvent("Student Logged in"),
+    Ctrl.markEvent("Student Goes to Course"),
+    Ctrl.markEvent("Student Checks Grade")
+];
+
+const TEACHER_GOALS = [
+    Ctrl.markEvent("Teacher Logged in"),
+    Ctrl.markEvent("Teacher goes to course"),
+    Ctrl.markEvent("Teacher Deletes Quiz")
+];
+
+const GOALS = [
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")],
+    [Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")]
+];
+
+function rankByTwoWay(ensemble) {
+    // List of all possible goal permutations
+    let permutations = GOALS;
+
+    // Save the total number of valid permutations
+    const totalPermutations = permutations.length;
+
+    // Remove permutations that are fully matched in the tests
+    for (let test of ensemble) {
+        permutations = permutations.filter(perm => {
+            let testIndex = 0; // Start from the beginning of the test
+            return !perm.every(event => {
+                const foundIndex = test.findIndex((t, i) => i >= testIndex && t.name === event.name);
+                if (foundIndex === -1) {
+                    return false; // Event not found, stop checking this permutation
+                }
+                testIndex = foundIndex + 1; // Move to the next position for order checking
+                return true; // Continue checking the next event in the permutation
+            });
+        });
+    }
+
+    // Calculate the fraction of permutations matched
+    return (totalPermutations - permutations.length) / totalPermutations;
+}
+
+
+ function rankingFunction(ensemble) {
+    
+    // How many goals did `ensemble` hit?
+    const metGoalsPercent = rankByTwoWay(ensemble);
+
+    return metGoalsPercent * 100 ; // convert to human-readable percentage
 }
 

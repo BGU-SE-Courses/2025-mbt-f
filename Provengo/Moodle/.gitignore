@@ -1,3 +1,10 @@
 products/
 .DS_Store
 desktop.ini
+server
+Start Moodle.exe
+Stop Moodle.exe
+reset.bat
+reset.ps1
+moodledata
+mysql

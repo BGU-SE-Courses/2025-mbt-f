@@ -42,11 +42,11 @@ Update all README.md files (except for d-e, see Section 1). Specifically, replac
 We detected the following bugs:
 
 1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
+   1. General description: Student manages to check grade after deletion
+   2. Steps to reproduce: Student goes to the course page -> teacher deletes the quiz -> student clicks on the quiz 
+   3. Expected result: Student not able to check grades\ some kind of message
+   4. Actual result: Student was able to access quiz grade after the quiz was deleted.
+   5. Link to the bug report:
 2. Bug 2: ...
 
-$$*TODO* if you did not detect the bug, you should delete this section$$  
+

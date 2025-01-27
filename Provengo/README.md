@@ -24,14 +24,12 @@ provengo analyze -f PDF Moodle
 provengo run --show-sessions Moodle
 ```
 5. We repeated steps 1-4 until we were satisfied with the result.
-6. We recorded a video of the running tests and added it to the report. Since more than one browser session was opened, we recorded the entire screen. The link for the video is [here]($$*TODO* write the link$$).
+6. We recorded a video of the running tests and added it to the report. Since more than one browser session was opened, we recorded the entire screen. The link for the video is [here](https://drive.google.com/file/d/1aRQ3Qzstgc7CfeK2E8_MdmpjDggy8hNx/view?usp=sharing).
 7. We copied the generated graph of the model to a file named [model.pdf](submission-files/model.pdf) inside the submission-files directory.
 
 ### Test files
 The test data is in [data.js](Moodle/data/data.js), the set of possible actions is in [actions.js](Moodle/spec/js/actions.js), and the behavior of the system is in [behavior.js](Moodle/spec/js/behavior.js).
 See the files for a detailed description.
-
-$$*TODO*: Make sure that the text inside the files is informative, self-explanatory, and properly written (meaningful variable names, no magic number, etc.). Specifically, write for each bthread a comment that explain what it does and make sure that the bthread's name reflects its purpose. See the file for an example.$$
 
 ## How we tested the system
 See the last two lessons of the [Provengo Course](https://provengo.github.io/Course/Online%20Course/0.9.5/index.html) for a detailed explanation of the following steps.
@@ -39,11 +37,11 @@ See the last two lessons of the [Provengo Course](https://provengo.github.io/Cou
 1. We implemented a domain-specific ranking function at the beginning of the [ensemble-code.js](Moodle/meta-spec/ensemble-code.js) file and updated the `rankingFunction` to use our function. We added a documentation comment that explains our function.
 2. We sampled the state space of the system using the following command that created a [samples.json](Moodle/products/run-source/samples.json) file:
 ```shell
-provengo sample --overwrite --size 10 Moodle
+provengo sample --overwrite --size 50 Moodle
 ```
 3. Given this sample, we created an ensemble (test suite) using the following commands that created an [ensemble.json](Moodle/products/run-source/ensemble.json) file:
 ```shell
-provengo ensemble --size 5 Moodle
+provengo ensemble --size 10 Moodle
 ```
 4. We repeated the last two steps, changing the two size parameters, until we were satisfied with the grade of the generated test suites.
 5. We copied the [ensemble.json](Moodle/products/run-source/ensemble.json) file to [domain-specific.json](submission-files/domain-specific.json).
