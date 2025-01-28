@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>hellocucumber</groupId>
-    <artifactId>hellocucumber</artifactId>
+    <groupId>Moodle</groupId>
+    <artifactId>Moodle</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Cucumber-Java Skeleton</name>
@@ -14,7 +14,6 @@
     </properties>
 
     <dependencyManagement>
-
         <dependencies>
             <dependency>
                 <groupId>org.junit</groupId>
@@ -22,11 +21,6 @@
                 <version>5.10.2</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>4.x.x</version>
             </dependency>
             <dependency>
                 <groupId>io.cucumber</groupId>
@@ -61,6 +55,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.18.1</version>
         </dependency>
 
     </dependencies>

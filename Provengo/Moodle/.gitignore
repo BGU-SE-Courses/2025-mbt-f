@@ -1,0 +1,8 @@
+products/
+.DS_Store
+desktop.ini
+server
+Start Moodle.exe
+Stop Moodle.exe
+moodledata
+mysql
