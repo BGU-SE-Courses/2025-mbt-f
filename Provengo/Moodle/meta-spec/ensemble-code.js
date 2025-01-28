@@ -121,6 +121,12 @@ const GOALS = [
     [Ctrl.markEvent("Teacher Logged in"), Ctrl.markEvent("Teacher goes to course"), Ctrl.markEvent("Student Logged in"), Ctrl.markEvent("Student Goes to Course"), Ctrl.markEvent("Student Checks Grade"), Ctrl.markEvent("Teacher Deletes Quiz")]
 ];
 
+/**
+ * checks out of all the possible paths
+ * 
+ * @param {Event[][]} ensemble 
+ * @returns the fraction of paths met
+ */
 function rankByTwoWay(ensemble) {
     // List of all possible goal permutations
     let permutations = GOALS;
@@ -147,10 +153,17 @@ function rankByTwoWay(ensemble) {
     return (totalPermutations - permutations.length) / totalPermutations;
 }
 
-
+/**
+ * We defined all the orders possible for the system
+ * We will check how many of these orders are met in the tests
+ * and maximize the number of orders met
+ * 
+ * @param {Event[][]} ensemble 
+ * @returns 
+ */
  function rankingFunction(ensemble) {
     
-    // How many goals did `ensemble` hit?
+    // How many possible paths did the ensemble meet
     const metGoalsPercent = rankByTwoWay(ensemble);
 
     return metGoalsPercent * 100 ; // convert to human-readable percentage
